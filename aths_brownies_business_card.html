@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ath's Brownies Business Card - Website Consistent</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f5f7fa;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .print-instructions {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 500px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .card-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        /* Standard business card size: 3.5" x 2" */
+        .business-card {
+            width: 3.5in;
+            height: 2in;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            box-sizing: border-box;
+            border: 1px solid rgba(139, 69, 19, 0.1);
+        }
+        
+        /* Header section */
+        .header-section {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .business-title {
+            font-size: 11px;
+            font-weight: 400;
+            color: #6c757d;
+            margin: 0;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        /* Brand name in beautiful script */
+        .brand-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 32px;
+            font-weight: 700;
+            color: #8B4513;
+            margin: 8px 0;
+            line-height: 1;
+            text-align: center;
+        }
+        
+        /* Decorative line */
+        .decorative-line {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #8B4513, transparent);
+            margin: 12px 0;
+        }
+        
+        /* Contact information layout */
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 16px;
+            align-items: center;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            font-weight: 400;
+            color: #495057;
+        }
+        
+        .contact-icon {
+            width: 12px;
+            height: 12px;
+            color: #8B4513;
+            flex-shrink: 0;
+        }
+        
+        /* Decorative corner elements matching website style */
+        .corner-decoration {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at center, rgba(139, 69, 19, 0.08) 0%, transparent 60%);
+            border-radius: 50%;
+        }
+        
+        .corner-decoration::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 20px;
+            height: 20px;
+            background: rgba(139, 69, 19, 0.1);
+            border-radius: 50%;
+        }
+        
+        /* Subtle ingredient pattern */
+        .ingredient-pattern {
+            position: absolute;
+            bottom: -10px;
+            left: -10px;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(139, 69, 19, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        /* Back of card */
+        .business-card-back {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            text-align: center;
+            justify-content: center;
+            border: 2px solid rgba(139, 69, 19, 0.1);
+        }
+        
+        .back-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 24px;
+            font-weight: 600;
+            color: #8B4513;
+            margin: 0;
+        }
+        
+        .back-tagline {
+            font-size: 11px;
+            color: #6c757d;
+            margin: 0;
+            font-style: italic;
+        }
+        
+        .back-description {
+            font-size: 10px;
+            line-height: 1.4;
+            color: #495057;
+            margin: 8px 0;
+            text-align: center;
+        }
+        
+        .specialties-list {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        
+        .specialty-tag {
+            background: #8B4513;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 8px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        /* Purple accent version matching website */
+        .business-card-purple {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        }
+        
+        .business-card-purple .brand-name {
+            color: #8B5CF6;
+        }
+        
+        .business-card-purple .decorative-line {
+            background: linear-gradient(to right, transparent, #8B5CF6, transparent);
+        }
+        
+        .business-card-purple .contact-icon {
+            color: #8B5CF6;
+        }
+        
+        .business-card-purple .corner-decoration {
+            background: radial-gradient(circle at center, rgba(139, 92, 246, 0.08) 0%, transparent 60%);
+        }
+        
+        .business-card-purple .corner-decoration::before {
+            background: rgba(139, 92, 246, 0.1);
+        }
+        
+        .business-card-purple .specialty-tag {
+            background: #8B5CF6;
+        }
+        
+        .business-card-purple .back-title {
+            color: #8B5CF6;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .print-instructions {
+                display: none;
+            }
+            
+            .card-container {
+                gap: 0.125in;
+            }
+            
+            .business-card {
+                box-shadow: none;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="print-instructions">
+        <h3>Ath's Brownies Business Card - Website Consistent Design</h3>
+        <p><strong>Design Match:</strong> Elegant script font with clean layout matching your website</p>
+        <p><strong>Colors:</strong> Brown and purple versions to match your brand</p>
+        <p><strong>Layout:</strong> Inspired by the elegant card you showed, adapted for your brand</p>
+        <button id="printButton" style="padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #8B4513; color: white; border: none; border-radius: 5px; margin-top: 15px;">
+            Print / Download Cards
+        </button>
+    </div>
+    
+    <div id="printableArea" class="card-container">
+        <!-- Front Card - Brown Version -->
+        <div class="business-card">
+            <div class="corner-decoration"></div>
+            <div class="ingredient-pattern"></div>
+            
+            <div class="header-section">
+                <p class="business-title">Handcrafted Brownies</p>
+            </div>
+            
+            <h1 class="brand-name">Ath's Brownies</h1>
+            
+            <div class="decorative-line"></div>
+            
+            <div class="contact-section">
+                <div class="contact-item">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                    </svg>
+                    <span>+27 123 456 789</span>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Cape Town, SA</span>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                    </svg>
+                    <span>hello@athsbrownies.com</span>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M12.017 11.986a4.5 4.5 0 10-6.033-6.033 3.5 3.5 0 00-1.842 4.363l1.12 3.36a.75.75 0 00.951.464l3.36-1.12a3.5 3.5 0 004.363-1.842z"></path>
+                    </svg>
+                    <span>www.athsbrownies.com</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Purple Version (matching website accent) -->
+        <div class="business-card business-card-purple">
+            <div class="corner-decoration"></div>
+            <div class="ingredient-pattern"></div>
+            
+            <div class="header-section">
+                <p class="business-title">Handcrafted Brownies</p>
+            </div>
+            
+            <h1 class="brand-name">Ath's Brownies</h1>
+            
+            <div class="decorative-line"></div>
+            
+            <div class="contact-section">
+                <div class="contact-item">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                    </svg>
+                    <span>+27 123 456 789</span>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Cape Town, SA</span>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                    </svg>
+                    <span>hello@athsbrownies.com</span>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M12.017 11.986a4.5 4.5 0 10-6.033-6.033 3.5 3.5 0 00-1.842 4.363l1.12 3.36a.75.75 0 00.951.464l3.36-1.12a3.5 3.5 0 004.363-1.842z"></path>
+                    </svg>
+                    <span>www.athsbrownies.com</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Back of Card -->
+        <div class="business-card business-card-back business-card-purple">
+            <div class="back-content">
+                <h2 class="back-title">Handcrafted to Perfection</h2>
+                <p class="back-tagline">Premium Brownies</p>
+                <p class="back-description">
+                    Indulge in our rich, fudgy brownies made from the finest ingredients. Each batch is lovingly crafted to perfection.
+                </p>
+                <div class="specialties-list">
+                    <div class="specialty-tag">Classic Fudge</div>
+                    <div class="specialty-tag">Salted Caramel</div>
+                    <div class="specialty-tag">Double Chocolate</div>
+                    <div class="specialty-tag">Walnut Crunch</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('printButton').addEventListener('click', function() {
+            window.print();
+        });
+    </script>
+</body>
+</html>
