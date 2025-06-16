@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Menu, X, Heart, Star, Clock, MapPin, Phone, Mail, Instagram, Facebook, ShoppingCart } from 'lucide-react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import OrderPage from './OrderPage';
+import CheckoutPage from './CheckoutPage';
 import { Brownie, Testimonial, brownies, testimonials } from './types';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/order" element={<OrderPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/" element={
           <div className="min-h-screen bg-white">
             {/* Navigation */}

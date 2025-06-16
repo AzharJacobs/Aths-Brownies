@@ -160,40 +160,47 @@ function OrderPage() {
                             <p className="text-purple-600 font-light">{item.price}</p>
                           </div>
                         </div>
-                        <div className="flex items-center space-x-3">
+                        <div className="flex items-center space-x-4">
                           <button 
                             onClick={() => updateQuantity(item.name, item.quantity - 1)}
-                            className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:border-purple-600 hover:text-purple-600"
+                            className="text-gray-400 hover:text-purple-600"
                           >
-                            <Minus className="h-4 w-4" />
+                            <Minus className="h-5 w-5" />
                           </button>
-                          <span className="font-light">{item.quantity}</span>
+                          <span className="text-gray-900 font-light">{item.quantity}</span>
                           <button 
                             onClick={() => updateQuantity(item.name, item.quantity + 1)}
-                            className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:border-purple-600 hover:text-purple-600"
+                            className="text-gray-400 hover:text-purple-600"
                           >
-                            <Plus className="h-4 w-4" />
-                          </button>
-                          <button 
-                            onClick={() => removeFromCart(item.name)}
-                            className="ml-2 text-gray-400 hover:text-red-500"
-                          >
-                            <X className="h-5 w-5" />
+                            <Plus className="h-5 w-5" />
                           </button>
                         </div>
                       </div>
                     ))}
                   </div>
 
-                  <div className="border-t border-gray-200 pt-4">
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="font-light text-gray-600">Total</span>
-                      <span className="text-xl font-light text-gray-900">${calculateTotal().toFixed(2)}</span>
+                  <div className="border-t border-gray-200 pt-6 space-y-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-600 font-light">Subtotal</span>
+                      <span className="text-gray-900 font-light">${calculateTotal().toFixed(2)}</span>
                     </div>
-                    <button className="w-full bg-purple-600 hover:bg-purple-700 text-white py-4 rounded-full font-light transition-all hover:shadow-lg hover:shadow-purple-200">
-                      Proceed to Checkout
-                    </button>
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-600 font-light">Delivery</span>
+                      <span className="text-gray-900 font-light">R30.00</span>
+                    </div>
+                    <div className="flex justify-between items-center pt-4 border-t border-gray-200">
+                      <span className="text-xl font-light text-gray-900">Total</span>
+                      <span className="text-xl font-light text-purple-600">${(calculateTotal() + 30).toFixed(2)}</span>
+                    </div>
                   </div>
+
+                  <Link 
+                    to="/checkout"
+                    className="w-full bg-purple-600 hover:bg-purple-700 text-white py-4 rounded-full font-light transition-all hover:shadow-lg hover:shadow-purple-200 mt-8 flex items-center justify-center space-x-2"
+                  >
+                    <ShoppingCart className="h-5 w-5" />
+                    <span>Proceed to Checkout</span>
+                  </Link>
                 </>
               )}
             </div>
