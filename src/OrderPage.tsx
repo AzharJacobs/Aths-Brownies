@@ -42,7 +42,7 @@ function OrderPage() {
 
   const calculateTotal = () => {
     return cartItems.reduce((total, item) => {
-      const price = parseFloat(item.price.replace('$', ''));
+      const price = parseFloat(item.price.replace('R', ''));
       return total + (price * item.quantity);
     }, 0);
   };
@@ -67,7 +67,6 @@ function OrderPage() {
               <Link to="/#home" className="text-gray-600 hover:text-purple-600 font-light transition-colors">Home</Link>
               <Link to="/#about" className="text-gray-600 hover:text-purple-600 font-light transition-colors">About</Link>
               <Link to="/#menu" className="text-gray-600 hover:text-purple-600 font-light transition-colors">Menu</Link>
-              <Link to="/#testimonials" className="text-gray-600 hover:text-purple-600 font-light transition-colors">Reviews</Link>
               <Link to="/#contact" className="text-gray-600 hover:text-purple-600 font-light transition-colors">Contact</Link>
               <Link to="/order" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2.5 rounded-full font-light transition-all hover:shadow-lg hover:shadow-purple-200">
                 Order Now
@@ -93,7 +92,6 @@ function OrderPage() {
               <Link to="/#home" className="block py-2 text-gray-600 hover:text-purple-600 font-light">Home</Link>
               <Link to="/#about" className="block py-2 text-gray-600 hover:text-purple-600 font-light">About</Link>
               <Link to="/#menu" className="block py-2 text-gray-600 hover:text-purple-600 font-light">Menu</Link>
-              <Link to="/#testimonials" className="block py-2 text-gray-600 hover:text-purple-600 font-light">Reviews</Link>
               <Link to="/#contact" className="block py-2 text-gray-600 hover:text-purple-600 font-light">Contact</Link>
               <Link to="/order" className="block w-full bg-purple-600 hover:bg-purple-700 text-white py-2.5 rounded-full font-light mt-4 text-center">
                 Order Now
@@ -182,7 +180,7 @@ function OrderPage() {
                   <div className="border-t border-gray-200 pt-6 space-y-4">
                     <div className="flex justify-between items-center">
                       <span className="text-gray-600 font-light">Subtotal</span>
-                      <span className="text-gray-900 font-light">${calculateTotal().toFixed(2)}</span>
+                      <span className="text-gray-900 font-light">R{calculateTotal().toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-gray-600 font-light">Delivery</span>
@@ -190,7 +188,7 @@ function OrderPage() {
                     </div>
                     <div className="flex justify-between items-center pt-4 border-t border-gray-200">
                       <span className="text-xl font-light text-gray-900">Total</span>
-                      <span className="text-xl font-light text-purple-600">${(calculateTotal() + 30).toFixed(2)}</span>
+                      <span className="text-xl font-light text-purple-600">R{(calculateTotal() + 30).toFixed(2)}</span>
                     </div>
                   </div>
 

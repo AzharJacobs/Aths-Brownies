@@ -15,38 +15,38 @@ export const brownies: Brownie[] = [
   {
     name: "Classic Fudge",
     description: "Rich chocolate brownies with premium cocoa",
-    price: "$24",
-    image: "https://images.pexels.com/photos/887853/pexels-photo-887853.jpeg?auto=compress&cs=tinysrgb&w=800"
+    price: "R45",
+    image: "/Classic-Brownie.jpeg"
   },
   {
     name: "Salted Caramel",
     description: "Gooey brownies with homemade caramel swirl",
-    price: "$28",
-    image: "https://images.pexels.com/photos/4110256/pexels-photo-4110256.jpeg?auto=compress&cs=tinysrgb&w=800"
+    price: "R50",
+    image: "/Caramel-Brownie.jpeg"
   },
   {
     name: "Walnut Chocolate",
     description: "Traditional brownies with premium walnuts",
-    price: "$26",
-    image: "https://images.pexels.com/photos/3026804/pexels-photo-3026804.jpeg?auto=compress&cs=tinysrgb&w=800"
+    price: "R48",
+    image: "/Walnut-Brownie.jpeg"
   },
   {
     name: "Triple Chocolate",
     description: "Dark, milk, and white chocolate perfection",
-    price: "$30",
-    image: "https://images.pexels.com/photos/4110003/pexels-photo-4110003.jpeg?auto=compress&cs=tinysrgb&w=800"
+    price: "R55",
+    image: "/Triple-choc.jpeg"
   },
   {
     name: "Raspberry Swirl",
     description: "Fresh raspberry puree marbled patterns",
-    price: "$28",
-    image: "https://images.pexels.com/photos/4110255/pexels-photo-4110255.jpeg?auto=compress&cs=tinysrgb&w=800"
+    price: "R52",
+    image: "/Swirl.jpeg"
   },
   {
-    name: "Espresso",
-    description: "Coffee-infused for chocolate lovers",
-    price: "$26",
-    image: "https://images.pexels.com/photos/4110004/pexels-photo-4110004.jpeg?auto=compress&cs=tinysrgb&w=800"
+    name: "Cream Cheese",
+    description: "Decadent cream cheese swirled brownies",
+    price: "R50",
+    image: "/Cheese.webp"
   }
 ];
 

@@ -3,7 +3,7 @@ import { Menu, X, Heart, Star, Clock, MapPin, Phone, Mail, Instagram, Facebook, 
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import OrderPage from './OrderPage';
 import CheckoutPage from './CheckoutPage';
-import { Brownie, Testimonial, brownies, testimonials } from './types';
+import { brownies } from './types';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,7 +33,6 @@ function App() {
                     <a href="#home" className="text-gray-600 hover:text-purple-600 font-light transition-colors">Home</a>
                     <a href="#about" className="text-gray-600 hover:text-purple-600 font-light transition-colors">About</a>
                     <a href="#menu" className="text-gray-600 hover:text-purple-600 font-light transition-colors">Menu</a>
-                    <a href="#testimonials" className="text-gray-600 hover:text-purple-600 font-light transition-colors">Reviews</a>
                     <a href="#contact" className="text-gray-600 hover:text-purple-600 font-light transition-colors">Contact</a>
                     <Link to="/order" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2.5 rounded-full font-light transition-all hover:shadow-lg hover:shadow-purple-200">
                       Order Now
@@ -59,7 +58,6 @@ function App() {
                     <a href="#home" className="block py-2 text-gray-600 hover:text-purple-600 font-light">Home</a>
                     <a href="#about" className="block py-2 text-gray-600 hover:text-purple-600 font-light">About</a>
                     <a href="#menu" className="block py-2 text-gray-600 hover:text-purple-600 font-light">Menu</a>
-                    <a href="#testimonials" className="block py-2 text-gray-600 hover:text-purple-600 font-light">Reviews</a>
                     <a href="#contact" className="block py-2 text-gray-600 hover:text-purple-600 font-light">Contact</a>
                     <Link to="/order" className="block w-full bg-purple-600 hover:bg-purple-700 text-white py-2.5 rounded-full font-light mt-4 text-center">
                       Order Now
@@ -93,9 +91,9 @@ function App() {
                   </div>
                   <div className="relative">
                     <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
-                      <img 
-                        src="https://images.pexels.com/photos/4110256/pexels-photo-4110256.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                        alt="Delicious brownies" 
+                      <img
+                        src="/Classic-Brownie.jpeg"
+                        alt="Delicious brownies"
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -109,9 +107,9 @@ function App() {
               <div className="max-w-6xl mx-auto px-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                   <div className="aspect-square rounded-3xl overflow-hidden shadow-xl">
-                    <img 
-                      src="https://images.pexels.com/photos/3026804/pexels-photo-3026804.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                      alt="Baking process" 
+                    <img
+                      src="/Walnut-Brownie.jpeg"
+                      alt="Baking process"
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -155,47 +153,24 @@ function App() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {brownies.map((brownie, index) => (
-                    <div key={index} className="group cursor-pointer">
-                      <div className="aspect-square rounded-2xl overflow-hidden mb-6 shadow-lg group-hover:shadow-xl transition-shadow">
-                        <img 
-                          src={brownie.image} 
+                    <div key={index} className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                      <div className="aspect-square overflow-hidden">
+                        <img
+                          src={brownie.image}
                           alt={brownie.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                       </div>
-                      <div className="text-center">
-                        <div className="flex justify-between items-start mb-3">
+                      <div className="p-6">
+                        <div className="flex justify-between items-center mb-3">
                           <h3 className="text-xl font-light text-gray-900">{brownie.name}</h3>
-                          <span className="text-lg font-light text-purple-600">{brownie.price}</span>
+                          <span className="text-xl font-medium text-purple-600">{brownie.price}</span>
                         </div>
-                        <p className="text-gray-500 font-light mb-6">{brownie.description}</p>
-                        <button className="w-full border border-gray-300 hover:border-purple-600 hover:text-purple-600 text-gray-700 py-3 rounded-full font-light transition-all">
-                          Add to Cart
-                        </button>
+                        <p className="text-gray-600 font-light mb-6 leading-relaxed">{brownie.description}</p>
+                        <Link to="/order" className="block w-full bg-purple-600 hover:bg-purple-700 text-white text-center py-3 rounded-full font-light transition-all">
+                          Order Now
+                        </Link>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-
-            {/* Testimonials Section */}
-            <section id="testimonials" className="py-32 bg-gray-50">
-              <div className="max-w-6xl mx-auto px-6">
-                <div className="text-center mb-20">
-                  <h2 className="text-5xl font-extralight text-gray-900 mb-6">What People Say</h2>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  {testimonials.map((testimonial, index) => (
-                    <div key={index} className="bg-white rounded-2xl p-8 shadow-lg">
-                      <div className="flex mb-6">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="h-5 w-5 text-purple-500 fill-current" />
-                        ))}
-                      </div>
-                      <p className="text-gray-600 mb-6 font-light leading-relaxed">"{testimonial.text}"</p>
-                      <p className="font-light text-gray-900">— {testimonial.name}</p>
                     </div>
                   ))}
                 </div>

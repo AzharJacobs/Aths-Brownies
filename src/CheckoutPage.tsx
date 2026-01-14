@@ -26,15 +26,15 @@ function CheckoutPage() {
   // Mock cart items - in a real app, this would come from your cart state management
   const cartItems: CartItem[] = [
     {
-      name: "Classic Chocolate Brownie",
+      name: "Classic Fudge",
       price: "R45.00",
-      image: "https://images.pexels.com/photos/4110256/pexels-photo-4110256.jpeg",
+      image: "/Classic-Brownie.jpeg",
       quantity: 2
     },
     {
-      name: "Walnut Brownie",
-      price: "R50.00",
-      image: "https://images.pexels.com/photos/3026804/pexels-photo-3026804.jpeg",
+      name: "Walnut Chocolate",
+      price: "R48.00",
+      image: "/Walnut-Brownie.jpeg",
       quantity: 1
     }
   ];
