@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Cake, Package } from 'lucide-react';
 import { brownies } from './types';
-import { business, sendUrl, instagramUrl } from './config';
+import { business, bulkTiers, sendUrl, instagramUrl } from './config';
+import Reveal from './Reveal';
 
 export default function EnquiryPage() {
   const [type, setType] = useState<'Custom' | 'Bulk'>('Custom');
@@ -49,13 +50,33 @@ export default function EnquiryPage() {
       <div className="grid sm:grid-cols-2 gap-4 mb-10">
         {tabs.map(t => (
           <button key={t.k} type="button" onClick={() => setType(t.k)}
-            className={`text-left rounded-2xl border p-5 transition-all duration-300 ${type === t.k ? 'border-purple-600 bg-purple-50 shadow-sm' : 'border-stone-200 bg-white hover:border-purple-300'}`}>
+            className={`text-left rounded-2xl border p-5 transition-all duration-300 ${type === t.k ? 'border-purple-600 bg-purple-50 shadow-[0_0_30px_-6px_rgba(168,85,247,0.5)]' : 'border-stone-200 bg-white hover:border-purple-300'}`}>
             <t.icon className="h-6 w-6 text-purple-700 mb-3" />
             <p className="text-stone-900">{t.title}</p>
             <p className="text-sm text-stone-500 font-light">{t.text}</p>
           </button>
         ))}
       </div>
+
+      {type === 'Bulk' && (
+        <Reveal>
+          <div className="mb-10">
+            <p className="text-xs tracking-[0.25em] uppercase text-stone-500 text-center mb-4">Volume pricing</p>
+            <div className="grid sm:grid-cols-3 gap-4">
+              {bulkTiers.map(t => (
+                <button key={t.qty} type="button" onClick={() => setF({ ...f, qty: String(t.qty) })}
+                  className={`relative text-center rounded-2xl border bg-white p-5 glow-card ${f.qty === String(t.qty) ? 'border-purple-600 shadow-[0_0_30px_-4px_rgba(168,85,247,0.5)]' : 'border-stone-200'}`}>
+                  {t.popular && <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-700 text-white text-[10px] tracking-widest uppercase px-3 py-1 rounded-full">Popular</span>}
+                  <p className="font-serif text-3xl text-stone-900">{t.qty}+</p>
+                  <p className="text-sm text-purple-700 mt-1">{t.discount}% off</p>
+                  <p className="text-xs text-stone-500 font-light mt-2">{t.label}: {t.note}</p>
+                </button>
+              ))}
+            </div>
+            <p className="text-xs text-stone-500 text-center mt-3">Indicative discounts on menu prices. Your final quote is confirmed by us.</p>
+          </div>
+        </Reveal>
+      )}
 
       <form onSubmit={submit} className="bg-white rounded-3xl border border-stone-200 p-6 sm:p-8 space-y-5">
         <div className="grid sm:grid-cols-2 gap-5">

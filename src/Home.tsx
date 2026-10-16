@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Cake, Package, ShoppingBag, ChefHat, Leaf, Truck, Instagram, Mail, MessageCircle, MapPin, Clock, ChevronDown } from 'lucide-react';
 import { brownies } from './types';
 import { business, instagramUrl } from './config';
+import Reveal from './Reveal';
 
 const services = [
   { icon: ShoppingBag, title: 'Regular Orders', text: 'Boxes of your favourite flavours, baked fresh and ready for collection or delivery.', to: '/order', cta: 'Order a box' },
@@ -43,8 +44,10 @@ export default function Home() {
             </div>
           </div>
           <div className="relative">
-            <div className="absolute -inset-4 bg-purple-200/40 rounded-[2.5rem] blur-2xl" />
-            <img src="/Classic-Brownie.jpeg" alt="Freshly baked chocolate brownies" className="relative aspect-[4/5] w-full object-cover rounded-[2rem] shadow-2xl shadow-stone-300/60" />
+            <div className="glow-pulse absolute -inset-6 bg-gradient-to-tr from-purple-400/40 to-fuchsia-300/30 rounded-[3rem] blur-3xl" />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] shadow-[0_0_60px_-10px_rgba(168,85,247,0.5)]">
+              <img src="/Classic-Brownie.jpeg" alt="Freshly baked chocolate brownies" className="slow-zoom w-full h-full object-cover" />
+            </div>
           </div>
         </div>
       </section>
@@ -69,13 +72,15 @@ export default function Home() {
             <p className="text-stone-600 font-light max-w-xl mx-auto">Three simple ways to order, all baked by the same hands.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
-            {services.map(s => (
-              <div key={s.title} className="bg-white rounded-3xl border border-stone-200 p-8 flex flex-col transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-stone-200/70">
+            {services.map((s, i) => (
+              <Reveal key={s.title} delay={i * 120}>
+              <div className="bg-white rounded-3xl border border-stone-200 p-8 flex flex-col h-full glow-card">
                 <div className="w-12 h-12 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center mb-6"><s.icon className="h-6 w-6" /></div>
                 <h3 className="font-serif text-2xl text-stone-900 mb-3">{s.title}</h3>
                 <p className="text-stone-600 font-light leading-relaxed mb-8 flex-1">{s.text}</p>
                 <Link to={s.to} className="text-sm text-purple-700 hover:text-purple-900 transition-colors">{s.cta} &rarr;</Link>
               </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -89,9 +94,10 @@ export default function Home() {
             <p className="text-stone-600 font-light">Six flavours, each baked in small batches.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {brownies.map(b => (
-              <Link to="/order" key={b.name} className="group block">
-                <div className="aspect-square overflow-hidden rounded-3xl bg-stone-100">
+            {brownies.map((b, i) => (
+              <Reveal key={b.name} delay={(i % 3) * 120}>
+              <Link to="/order" className="group block">
+                <div className="aspect-square overflow-hidden rounded-3xl bg-stone-100 transition duration-500 group-hover:shadow-[0_10px_40px_-8px_rgba(168,85,247,0.45)]">
                   <img src={b.image} alt={b.name} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
                 <div className="flex justify-between items-baseline mt-5 mb-1">
@@ -100,6 +106,7 @@ export default function Home() {
                 </div>
                 <p className="text-sm text-stone-500 font-light">{b.description}</p>
               </Link>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -113,12 +120,14 @@ export default function Home() {
             <p className="text-stone-600 font-light">Simple, personal and no payment taken online.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {steps.map(s => (
-              <div key={s.n} className="text-center px-2">
-                <div className="w-12 h-12 mx-auto rounded-full border border-purple-300 text-purple-700 font-serif text-lg flex items-center justify-center mb-5">{s.n}</div>
+            {steps.map((s, i) => (
+              <Reveal key={s.n} delay={i * 120} className="text-center px-2">
+              <div>
+                <div className="w-12 h-12 mx-auto rounded-full border border-purple-300 text-purple-700 font-serif text-lg flex items-center justify-center mb-5 shadow-[0_0_18px_rgba(168,85,247,0.3)]">{s.n}</div>
                 <h3 className="text-stone-900 mb-2">{s.title}</h3>
                 <p className="text-sm text-stone-600 font-light leading-relaxed">{s.text}</p>
               </div>
+              </Reveal>
             ))}
           </div>
         </div>

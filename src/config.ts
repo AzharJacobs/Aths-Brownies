@@ -11,6 +11,16 @@ export const business = {
   bulkMinimum: 20,
 };
 
+// Box sizes offered on the menu. Box price = price per brownie x size.
+export const boxSizes = [4, 6, 12];
+
+// Bulk tiers. Discounts are placeholders: set the real percentages.
+export const bulkTiers = [
+  { qty: 20, discount: 5, label: 'Starter', note: 'Small events and office treats' },
+  { qty: 50, discount: 10, label: 'Event', note: 'Parties, weddings and functions', popular: true },
+  { qty: 100, discount: 15, label: 'Corporate', note: 'Large events, gifting and resale' },
+];
+
 export const instagramUrl = `https://www.instagram.com/${business.instagram}/`;
 
 // Opens WhatsApp (or email) with the order text pre-filled. No payment details are collected on the site.
