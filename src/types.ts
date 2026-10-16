@@ -5,12 +5,6 @@ export interface Brownie {
   image: string;
 }
 
-export interface Testimonial {
-  name: string;
-  text: string;
-  rating: number;
-}
-
 export const brownies: Brownie[] = [
   {
     name: "Classic Fudge",
@@ -22,48 +16,32 @@ export const brownies: Brownie[] = [
     name: "Salted Caramel",
     description: "Gooey brownies with homemade caramel swirl",
     price: "R50",
-    image: "/Caramel-Brownie.jpeg"
+    image: "/Salted-Caramel-Brownie.jpg"
   },
   {
     name: "Walnut Chocolate",
     description: "Traditional brownies with premium walnuts",
     price: "R48",
-    image: "/Walnut-Brownie.jpeg"
+    image: "/Walnut-Brownie.jpg"
   },
   {
     name: "Triple Chocolate",
     description: "Dark, milk, and white chocolate perfection",
     price: "R55",
-    image: "/Triple-choc.jpeg"
+    image: "/Triple-Chocolate-Brownie.jpg"
   },
   {
-    name: "Raspberry Swirl",
-    description: "Fresh raspberry puree marbled patterns",
+    name: "White Chocolate",
+    description: "Fudgy brownies studded with creamy white chocolate",
     price: "R52",
-    image: "/Swirl.jpeg"
+    image: "/White-Chocolate-Brownie.jpg"
   },
   {
-    name: "Cream Cheese",
-    description: "Decadent cream cheese swirled brownies",
+    name: "Biscoff Crunch",
+    description: "Brownies swirled with Biscoff spread and biscuit crumbs",
     price: "R50",
-    image: "/Cheese.webp"
+    image: "/Biscoff-Brownie.jpg"
   }
 ];
 
-export const testimonials: Testimonial[] = [
-  {
-    name: "Sarah M.",
-    text: "Absolutely divine! Perfect texture and incredible flavor.",
-    rating: 5
-  },
-  {
-    name: "Michael R.",
-    text: "Ordered for my office party - everyone loved them!",
-    rating: 5
-  },
-  {
-    name: "Emma L.",
-    text: "The salted caramel brownies are perfection.",
-    rating: 5
-  }
-]; 
+export const priceOf = (b: { price: string }) => parseFloat(b.price.replace('R', ''));
