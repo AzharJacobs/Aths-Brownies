@@ -5,12 +5,6 @@ export interface Brownie {
   image: string;
 }
 
-export interface Testimonial {
-  name: string;
-  text: string;
-  rating: number;
-}
-
 export const brownies: Brownie[] = [
   {
     name: "Classic Fudge",
@@ -50,20 +44,4 @@ export const brownies: Brownie[] = [
   }
 ];
 
-export const testimonials: Testimonial[] = [
-  {
-    name: "Sarah M.",
-    text: "Absolutely divine! Perfect texture and incredible flavor.",
-    rating: 5
-  },
-  {
-    name: "Michael R.",
-    text: "Ordered for my office party - everyone loved them!",
-    rating: 5
-  },
-  {
-    name: "Emma L.",
-    text: "The salted caramel brownies are perfection.",
-    rating: 5
-  }
-]; 
+export const priceOf = (b: { price: string }) => parseFloat(b.price.replace('R', ''));

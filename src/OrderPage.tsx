@@ -1,212 +1,76 @@
-import { useState } from 'react';
-import { ShoppingCart, X, Plus, Minus, Menu } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Brownie, brownies } from './types';
+import { ShoppingBag, Plus, Minus, Trash2 } from 'lucide-react';
+import { brownies, priceOf } from './types';
+import { useCart } from './cart';
+import { business } from './config';
 
-interface CartItem extends Brownie {
-  quantity: number;
-}
-
-function OrderPage() {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const addToCart = (brownie: Brownie) => {
-    setCartItems(prevItems => {
-      const existingItem = prevItems.find(item => item.name === brownie.name);
-      if (existingItem) {
-        return prevItems.map(item =>
-          item.name === brownie.name
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-      return [...prevItems, { ...brownie, quantity: 1 }];
-    });
-  };
-
-  const removeFromCart = (brownieName: string) => {
-    setCartItems(prevItems => prevItems.filter(item => item.name !== brownieName));
-  };
-
-  const updateQuantity = (brownieName: string, newQuantity: number) => {
-    if (newQuantity < 1) return;
-    setCartItems(prevItems =>
-      prevItems.map(item =>
-        item.name === brownieName
-          ? { ...item, quantity: newQuantity }
-          : item
-      )
-    );
-  };
-
-  const calculateTotal = () => {
-    return cartItems.reduce((total, item) => {
-      const price = parseFloat(item.price.replace('R', ''));
-      return total + (price * item.quantity);
-    }, 0);
-  };
+export default function OrderPage() {
+  const { items, add, setQty, remove, subtotal } = useCart();
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex justify-between items-center h-20">
-            <div className="flex items-center space-x-3">
-              <img 
-                src="/1000347804.jpg" 
-                alt="Ath's Brownies Logo" 
-                className="w-12 h-12 rounded-full object-cover"
-              />
-              <span className="text-2xl font-light text-gray-900">Ath's Brownies</span>
-            </div>
-            
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              <Link to="/#home" className="text-gray-600 hover:text-purple-600 font-light transition-colors">Home</Link>
-              <Link to="/#about" className="text-gray-600 hover:text-purple-600 font-light transition-colors">About</Link>
-              <Link to="/#menu" className="text-gray-600 hover:text-purple-600 font-light transition-colors">Menu</Link>
-              <Link to="/#contact" className="text-gray-600 hover:text-purple-600 font-light transition-colors">Contact</Link>
-              <Link to="/order" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2.5 rounded-full font-light transition-all hover:shadow-lg hover:shadow-purple-200">
-                Order Now
-              </Link>
-            </div>
+    <div className="max-w-6xl mx-auto px-6 py-16">
+      <div className="text-center mb-14">
+        <h1 className="font-serif text-4xl lg:text-5xl text-stone-900 mb-4">Menu & Order</h1>
+        <p className="text-stone-600 font-light">{business.leadTime} Need 20+ or something custom? <Link to="/enquiry" className="text-purple-700 underline underline-offset-4">Request a quote</Link>.</p>
+      </div>
 
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-600 hover:text-purple-600 p-2"
-              >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-100">
-            <div className="px-6 py-4 space-y-3">
-              <Link to="/#home" className="block py-2 text-gray-600 hover:text-purple-600 font-light">Home</Link>
-              <Link to="/#about" className="block py-2 text-gray-600 hover:text-purple-600 font-light">About</Link>
-              <Link to="/#menu" className="block py-2 text-gray-600 hover:text-purple-600 font-light">Menu</Link>
-              <Link to="/#contact" className="block py-2 text-gray-600 hover:text-purple-600 font-light">Contact</Link>
-              <Link to="/order" className="block w-full bg-purple-600 hover:bg-purple-700 text-white py-2.5 rounded-full font-light mt-4 text-center">
-                Order Now
-              </Link>
-            </div>
-          </div>
-        )}
-      </nav>
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        <h1 className="text-5xl font-extralight text-gray-900 mb-12 text-center">Order Your Brownies</h1>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Menu Section */}
-          <div className="lg:col-span-2">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {brownies.map((brownie, index) => (
-                <div key={index} className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                  <div className="aspect-square rounded-xl overflow-hidden mb-4">
-                    <img 
-                      src={brownie.image} 
-                      alt={brownie.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className="text-xl font-light text-gray-900">{brownie.name}</h3>
-                    <span className="text-lg font-light text-purple-600">{brownie.price}</span>
-                  </div>
-                  <p className="text-gray-500 font-light mb-4">{brownie.description}</p>
-                  <button 
-                    onClick={() => addToCart(brownie)}
-                    className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-full font-light transition-all hover:shadow-lg hover:shadow-purple-200"
-                  >
-                    Add to Cart
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Cart Section */}
-          <div className="lg:col-span-1">
-            <div className="bg-gray-50 rounded-3xl p-6 sticky top-6">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-light text-gray-900">Your Cart</h2>
-                <ShoppingCart className="h-6 w-6 text-purple-600" />
+      <div className="grid lg:grid-cols-3 gap-10">
+        <div className="lg:col-span-2 grid sm:grid-cols-2 gap-6">
+          {brownies.map(b => (
+            <div key={b.name} className="bg-white rounded-3xl border border-stone-200 overflow-hidden transition duration-300 hover:shadow-xl hover:shadow-stone-200/70">
+              <div className="aspect-[4/3] overflow-hidden bg-stone-100">
+                <img src={b.image} alt={b.name} loading="lazy" className="w-full h-full object-cover" />
               </div>
-
-              {cartItems.length === 0 ? (
-                <p className="text-gray-500 font-light text-center py-8">Your cart is empty</p>
-              ) : (
-                <>
-                  <div className="space-y-4 mb-6">
-                    {cartItems.map((item) => (
-                      <div key={item.name} className="flex items-center justify-between bg-white p-4 rounded-xl">
-                        <div className="flex items-center space-x-4">
-                          <img 
-                            src={item.image} 
-                            alt={item.name}
-                            className="w-16 h-16 rounded-lg object-cover"
-                          />
-                          <div>
-                            <h3 className="font-light text-gray-900">{item.name}</h3>
-                            <p className="text-purple-600 font-light">{item.price}</p>
-                          </div>
-                        </div>
-                        <div className="flex items-center space-x-4">
-                          <button 
-                            onClick={() => updateQuantity(item.name, item.quantity - 1)}
-                            className="text-gray-400 hover:text-purple-600"
-                          >
-                            <Minus className="h-5 w-5" />
-                          </button>
-                          <span className="text-gray-900 font-light">{item.quantity}</span>
-                          <button 
-                            onClick={() => updateQuantity(item.name, item.quantity + 1)}
-                            className="text-gray-400 hover:text-purple-600"
-                          >
-                            <Plus className="h-5 w-5" />
-                          </button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="border-t border-gray-200 pt-6 space-y-4">
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-600 font-light">Subtotal</span>
-                      <span className="text-gray-900 font-light">R{calculateTotal().toFixed(2)}</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-600 font-light">Delivery</span>
-                      <span className="text-gray-900 font-light">R30.00</span>
-                    </div>
-                    <div className="flex justify-between items-center pt-4 border-t border-gray-200">
-                      <span className="text-xl font-light text-gray-900">Total</span>
-                      <span className="text-xl font-light text-purple-600">R{(calculateTotal() + 30).toFixed(2)}</span>
-                    </div>
-                  </div>
-
-                  <Link 
-                    to="/checkout"
-                    className="w-full bg-purple-600 hover:bg-purple-700 text-white py-4 rounded-full font-light transition-all hover:shadow-lg hover:shadow-purple-200 mt-8 flex items-center justify-center space-x-2"
-                  >
-                    <ShoppingCart className="h-5 w-5" />
-                    <span>Proceed to Checkout</span>
-                  </Link>
-                </>
-              )}
+              <div className="p-6">
+                <div className="flex justify-between items-baseline mb-2">
+                  <h3 className="font-serif text-xl text-stone-900">{b.name}</h3>
+                  <span className="text-purple-700">{b.price}</span>
+                </div>
+                <p className="text-sm text-stone-500 font-light mb-5">{b.description}</p>
+                <button onClick={() => add(b)} className="btn-primary w-full">Add to order</button>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
+
+        <aside className="lg:col-span-1">
+          <div className="bg-white rounded-3xl border border-stone-200 p-6 lg:sticky lg:top-28">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="font-serif text-2xl text-stone-900">Your order</h2>
+              <ShoppingBag className="h-5 w-5 text-purple-700" />
+            </div>
+            {items.length === 0 ? (
+              <p className="text-stone-500 font-light text-center py-8">Nothing added yet.</p>
+            ) : (
+              <>
+                <ul className="space-y-4 mb-6">
+                  {items.map(i => (
+                    <li key={i.name} className="flex items-center gap-3">
+                      <img src={i.image} alt="" className="w-14 h-14 rounded-xl object-cover" />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm text-stone-900 truncate">{i.name}</p>
+                        <p className="text-sm text-purple-700">R{(priceOf(i) * i.quantity).toFixed(2)}</p>
+                      </div>
+                      <div className="flex items-center gap-2 text-stone-500">
+                        <button aria-label="Decrease" onClick={() => setQty(i.name, i.quantity - 1)} className="p-1 hover:text-purple-700"><Minus className="h-4 w-4" /></button>
+                        <span className="w-5 text-center text-sm text-stone-900">{i.quantity}</span>
+                        <button aria-label="Increase" onClick={() => setQty(i.name, i.quantity + 1)} className="p-1 hover:text-purple-700"><Plus className="h-4 w-4" /></button>
+                        <button aria-label="Remove" onClick={() => remove(i.name)} className="p-1 hover:text-red-600"><Trash2 className="h-4 w-4" /></button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <div className="border-t border-stone-200 pt-4 space-y-2 text-sm">
+                  <div className="flex justify-between text-stone-600"><span>Subtotal</span><span>R{subtotal.toFixed(2)}</span></div>
+                  <div className="flex justify-between text-stone-600"><span>Delivery (if chosen)</span><span>R{business.deliveryFee.toFixed(2)}</span></div>
+                </div>
+                <Link to="/checkout" className="btn-primary w-full mt-6">Continue</Link>
+                <p className="text-xs text-stone-500 text-center mt-3">No payment is taken now. We confirm your order first.</p>
+              </>
+            )}
+          </div>
+        </aside>
       </div>
     </div>
   );
 }
-
-export default OrderPage; 
