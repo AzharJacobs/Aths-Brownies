@@ -16,31 +16,31 @@ export const brownies: Brownie[] = [
     name: "Salted Caramel",
     description: "Gooey brownies with homemade caramel swirl",
     price: "R50",
-    image: "/Caramel-Brownie.jpeg"
+    image: "/Salted-Caramel-Brownie.jpg"
   },
   {
     name: "Walnut Chocolate",
     description: "Traditional brownies with premium walnuts",
     price: "R48",
-    image: "/Walnut-Brownie.jpeg"
+    image: "/Walnut-Brownie.jpg"
   },
   {
     name: "Triple Chocolate",
     description: "Dark, milk, and white chocolate perfection",
     price: "R55",
-    image: "/Triple-choc.jpeg"
+    image: "/Triple-Chocolate-Brownie.jpg"
   },
   {
     name: "White Chocolate",
     description: "Fudgy brownies studded with creamy white chocolate",
     price: "R52",
-    image: "/Swirl.jpeg"
+    image: "/White-Chocolate-Brownie.jpg"
   },
   {
     name: "Biscoff Crunch",
     description: "Brownies swirled with Biscoff spread and biscuit crumbs",
     price: "R50",
-    image: "/Cheese.webp"
+    image: "/Biscoff-Brownie.jpg"
   }
 ];
 

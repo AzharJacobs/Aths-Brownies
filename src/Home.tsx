@@ -127,7 +127,7 @@ export default function Home() {
       {/* About */}
       <section id="about" className="py-24 bg-purple-50/60">
         <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-14 items-center">
-          <img src="/Walnut-Brownie.jpeg" alt="Walnut brownies" loading="lazy" className="aspect-[4/3] w-full object-cover rounded-3xl shadow-xl shadow-stone-300/50" />
+          <img src="/Walnut-Brownie.jpg" alt="Walnut brownies" loading="lazy" className="aspect-[4/3] w-full object-cover rounded-3xl shadow-xl shadow-stone-300/50" />
           <div>
             <h2 className="font-serif text-4xl text-stone-900 mb-6">A new local bakery, made with care</h2>
             <p className="text-stone-600 font-light leading-relaxed mb-5">
