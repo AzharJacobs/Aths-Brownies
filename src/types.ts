@@ -31,14 +31,14 @@ export const brownies: Brownie[] = [
     image: "/Triple-choc.jpeg"
   },
   {
-    name: "Raspberry Swirl",
-    description: "Fresh raspberry puree marbled patterns",
+    name: "White Chocolate",
+    description: "Fudgy brownies studded with creamy white chocolate",
     price: "R52",
     image: "/Swirl.jpeg"
   },
   {
-    name: "Cream Cheese",
-    description: "Decadent cream cheese swirled brownies",
+    name: "Biscoff Crunch",
+    description: "Brownies swirled with Biscoff spread and biscuit crumbs",
     price: "R50",
     image: "/Cheese.webp"
   }
